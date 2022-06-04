@@ -1,0 +1,26 @@
+{
+  "name": "see-you",
+  "version": "1.0.0",
+  "description": "simple WebRTC meetings app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/s-cryptor/see-you.git"
+  },
+  "author": "Grigory Korbut",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/s-cryptor/see-you/issues"
+  },
+  "homepage": "https://github.com/s-cryptor/see-you#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "socket.io": "^4.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
