@@ -34,12 +34,19 @@ export const handlePreOffer = (data) => {
 
 function acceptCallHandler() {
   console.log('call accepted')
+  sendPreOfferAnswer(constants.preOfferAnswer.CALL_ACCEPTED)
 }
 
 function rejectCallHandler() {
   console.log('call rejected')
+  sendPreOfferAnswer(constants.preOfferAnswer.CALL_REJECTED)
 }
 
 function callingDialogRejectCallHandler() {
   console.log('rejecting the call')
+}
+
+function sendPreOfferAnswer(preOfferAnswer) {
+  const data = { callerSocketId: connectedUserDetails.socketId, preOfferAnswer }
+  wss.sendPreOfferAnswer(data)
 }

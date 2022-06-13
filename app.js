@@ -29,6 +29,10 @@ io.on('connection', (socket) => {
     }
   })
 
+  socket.on('pre-offer-answer', (data) => {
+    console.log('preoffer answer came', data)
+  })
+
   socket.on('disconnect', () => {
     const newConnectedPeers = connectedPeers.filter((peerSocketId) => peerSocketId !== socket.id)
 

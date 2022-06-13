@@ -44,6 +44,13 @@ export const getIncomingCallDialog = (callTypeInfo, acceptCallHandler, rejectCal
   dialogContent.appendChild(buttonContainer)
   dialog.appendChild(dialogContent)
 
+  acceptCallButton.addEventListener('click', () => {
+    acceptCallHandler()
+  })
+  rejectCallButton.addEventListener('click', () => {
+    rejectCallHandler()
+  })
+
   return dialog
 }
 

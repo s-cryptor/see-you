@@ -20,3 +20,7 @@ export const registerSocketEvents = (socket) => {
 export const sendPreOffer = (payload) => {
   socketIO.emit('pre-offer', payload)
 }
+
+export const sendPreOfferAnswer = (payload) => {
+  socketIO.emit('pre-offer-answer', payload)
+}
