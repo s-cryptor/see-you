@@ -46,3 +46,42 @@ export const getIncomingCallDialog = (callTypeInfo, acceptCallHandler, rejectCal
 
   return dialog
 }
+
+export const getCallingDialog = (rejectCallHandler) => {
+  const dialog = document.createElement('div')
+  dialog.classList.add('dialog_wrapper')
+
+  const dialogContent = document.createElement('div')
+  dialogContent.classList.add('dialog_content')
+
+  const title = document.createElement('p')
+  title.classList.add('dialog_title')
+  title.innerHTML = 'Calling'
+
+  const imageContainer = document.createElement('div')
+  imageContainer.classList.add('dialog_image_container')
+
+  const image = document.createElement('img')
+  const avatarImagePath = './utils/images/dialogAvatar.png'
+  image.src = avatarImagePath
+
+  const buttonContainer = document.createElement('div')
+  buttonContainer.classList.add('dialog_button_container')
+
+  const hangUpCallButton = document.createElement('button')
+  hangUpCallButton.classList.add('dialog_reject_call_button')
+  const hangUpCallImage = document.createElement('img')
+  hangUpCallImage.classList.add('dialog_reject_call_image')
+  const hangUpCallImagePath = './utils/images/rejectCall.png'
+  hangUpCallImage.src = hangUpCallImagePath
+
+  hangUpCallButton.appendChild(hangUpCallImage)
+  buttonContainer.appendChild(hangUpCallButton)
+  imageContainer.appendChild(image)
+  dialogContent.appendChild(title)
+  dialogContent.appendChild(imageContainer)
+  dialogContent.appendChild(buttonContainer)
+  dialog.appendChild(dialogContent)
+
+  return dialog
+}
