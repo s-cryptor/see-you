@@ -30,9 +30,7 @@ io.on('connection', (socket) => {
   })
 
   socket.on('disconnect', () => {
-    const newConnectedPeers = connectedPeers.filter((peerSocketId) => {
-      peerSocketId !== socket.id
-    })
+    const newConnectedPeers = connectedPeers.filter((peerSocketId) => peerSocketId !== socket.id)
 
     connectedPeers = newConnectedPeers
   })

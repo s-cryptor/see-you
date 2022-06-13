@@ -34,8 +34,6 @@ export const getIncomingCallDialog = (callTypeInfo, acceptCallHandler, rejectCal
   const rejectCallImagePath = './utils/images/rejectCall.png'
   rejectCallImage.src = rejectCallImagePath
 
-  const dialogHTML = document.getElementById('dialog')
-
   acceptCallButton.appendChild(acceptCallImage)
   rejectCallButton.appendChild(rejectCallImage)
   buttonContainer.appendChild(acceptCallButton)
@@ -45,5 +43,6 @@ export const getIncomingCallDialog = (callTypeInfo, acceptCallHandler, rejectCal
   dialogContent.appendChild(imageContainer)
   dialogContent.appendChild(buttonContainer)
   dialog.appendChild(dialogContent)
-  dialogHTML.appendChild(dialog)
+
+  return dialog
 }
