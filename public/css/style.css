@@ -49,6 +49,12 @@ body {
   align-items: center;
 }
 
+@media screen and (max-width: 720px) {
+  .main_container {
+    flex-direction: column;
+  }
+}
+
 .dashboard_container {
   width: 25%;
   height: 100%;
