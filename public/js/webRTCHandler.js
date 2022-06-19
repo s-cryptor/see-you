@@ -4,10 +4,14 @@ import * as ui from './ui.js'
 import * as store from './store.js'
 
 let connectedUserDetails
+let peerConnection
 
 const defaultConstraints = {
   audio: true,
   video: true,
+}
+const config = {
+  iceServer: [{ urls: 'stun:stun.l.google.com:13902' }],
 }
 
 export const getLocalPreview = () => {
@@ -21,6 +25,39 @@ export const getLocalPreview = () => {
       console.log('error occured when trying to get access to camera')
       console.log(error)
     })
+}
+
+const createPeerConnection = () => {
+  peerConnection = new RTCPeerConnection(config)
+
+  peerConnection.addEventListener('icecandidate', (event) => {
+    console.log('getting ice candidates from stun server')
+    if (event.candidate) {
+      // send ice candidates to other peer
+    }
+  })
+
+  peerConnection.addEventListener('connectionstatechange', () => {
+    if (peerConnection.connectionState === 'connected') {
+      console.log('successfully connected with other peer')
+    }
+  })
+
+  const remoteStream = new MediaStream()
+  store.setRemoteStream(remoteStream)
+  ui.updateRemoteVideo(remoteStream)
+
+  peerConnection.addEventListener('track', (event) => {
+    remoteStream.addTrack(event.track)
+  })
+
+  if (connectedUserDetails.callType === constants.callType.VIDEO_PERSONAL_CODE) {
+    const localStream = store.getState().localStream
+
+    for (const track of localStream.getTracks()) {
+      peerConnection.addTrack(track, localStream)
+    }
+  }
 }
 
 export const sendPreOffer = (calleePersonalCode, callType) => {
