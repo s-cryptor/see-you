@@ -192,7 +192,7 @@ export const toggleCameraAndScreenSharing = async (isScreenSharingActive) => {
       )
 
       if (sender) {
-        sender.replaceTrack(screenSharingStream.getVideoTracks())
+        sender.replaceTrack(screenSharingStream.getVideoTracks()[0])
       }
 
       store.setScreenSharingActive(!isScreenSharingActive)
