@@ -34,6 +34,19 @@ export const updateCameraButton = (isCameraActive) => {
   cameraButtonImage.src = isCameraActive ? cameraOffImgSrc : cameraOnImgSrc
 }
 
+export const appendMessage = (message, right = false) => {
+  const messagesContainer = document.getElementById('messages_container')
+  const messageElement = right
+    ? elements.getRightMessage(message)
+    : elements.getLeftMessage(message)
+  messagesContainer.appendChild(messageElement)
+}
+
+export const clearMessenger = () => {
+  const messagesContainer = document.getElementById('messages_container')
+  messagesContainer.querySelectorAll('*').forEach((n) => n.remove())
+}
+
 export const showIncomingCallDialog = (callType, acceptCallHandler, rejectCallHandler) => {
   const callTypeInfo = callType === constants.callType.CHAT_PERSONAL_CODE ? 'Chat' : 'Video'
   const incomingCallDialog = elements.getIncomingCallDialog(

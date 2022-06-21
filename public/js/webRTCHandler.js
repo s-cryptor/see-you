@@ -39,7 +39,7 @@ const createPeerConnection = () => {
     })
     channel.addEventListener('message', (event) => {
       const message = JSON.parse(event.data)
-      console.log('message came from data channel', message)
+      ui.appendMessage(message)
     })
   })
 
