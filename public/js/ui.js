@@ -20,6 +20,20 @@ export const updateRemoteVideo = (stream) => {
   remoteVideo.srcObject = stream
 }
 
+export const updateMicButton = (isMicActive) => {
+  const micOnImgSrc = './utils/images/mic.png'
+  const micOffImgSrc = './utils/images/micOff.png'
+  const micButtonImage = document.getElementById('mic_button_image')
+  micButtonImage.src = isMicActive ? micOffImgSrc : micOnImgSrc
+}
+
+export const updateCameraButton = (isCameraActive) => {
+  const cameraOnImgSrc = './utils/images/camera.png'
+  const cameraOffImgSrc = './utils/images/cameraOff.png'
+  const cameraButtonImage = document.getElementById('camera_button_image')
+  cameraButtonImage.src = isCameraActive ? cameraOffImgSrc : cameraOnImgSrc
+}
+
 export const showIncomingCallDialog = (callType, acceptCallHandler, rejectCallHandler) => {
   const callTypeInfo = callType === constants.callType.CHAT_PERSONAL_CODE ? 'Chat' : 'Video'
   const incomingCallDialog = elements.getIncomingCallDialog(
