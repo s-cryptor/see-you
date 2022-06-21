@@ -44,3 +44,9 @@ cameraButton.addEventListener('click', () => {
   localStream.getVideoTracks()[0].enabled = !isCameraEnabled
   ui.updateCameraButton(isCameraEnabled)
 })
+
+const switchScreenSharingButton = document.getElementById('screen_sharing_button')
+switchScreenSharingButton.addEventListener('click', () => {
+  const isScreenSharingActive = store.getState().screenSharingActive
+  webRTCHandler.toggleCameraAndScreenSharing(isScreenSharingActive)
+})

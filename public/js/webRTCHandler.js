@@ -175,3 +175,30 @@ function rejectCallHandler() {
 function callingDialogRejectCallHandler() {
   console.log('rejecting the call')
 }
+
+export const toggleCameraAndScreenSharing = async (isScreenSharingActive) => {
+  let screenSharingStream
+
+  if (isScreenSharingActive) {
+  } else {
+    console.log('switching for screen sharing')
+    try {
+      screenSharingStream = await navigator.mediaDevices.getDisplayMedia({ video: true })
+      store.setScreenSharingStream(screenSharingStream)
+
+      const senders = peerConnection.getSenders()
+      const sender = senders.find(
+        (s) => s.track.kind === screenSharingStream.getVideoTracks()[0].kind
+      )
+
+      if (sender) {
+        sender.replaceTrack(screenSharingStream.getVideoTracks())
+      }
+
+      store.setScreenSharingActive(!isScreenSharingActive)
+      ui.updateLocalVideo(screenSharingStream)
+    } catch (error) {
+      console.error('error occured when trying to set or get screen sharing screen', error)
+    }
+  }
+}
