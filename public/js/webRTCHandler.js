@@ -180,6 +180,20 @@ export const toggleCameraAndScreenSharing = async (isScreenSharingActive) => {
   let screenSharingStream
 
   if (isScreenSharingActive) {
+    const localStream = store.getState().localStream
+    const sender = peerConnection
+      .getSenders()
+      .find((s) => s.track.kind === localStream.getVideoTracks()[0].kind)
+    if (sender) {
+      sender.replaceTrack(localStream.getVideoTracks()[0])
+    }
+
+    store
+      .getState()
+      .screenSharingStream.getTracks()
+      .forEach((track) => track.stop())
+    store.setScreenSharingActive(!isScreenSharingActive)
+    ui.updateLocalVideo(localStream)
   } else {
     console.log('switching for screen sharing')
     try {
